@@ -4,7 +4,7 @@
       %tr
         %th Post
         %th Username
-        %th{colspan: 3}
+        %th{colspan: 5}
 
     %tbody
       - @tweets.each do |tweet|
@@ -20,3 +20,8 @@
           %td
             = link_to tweet, data: { confirm: 'Are you sure?' }, method: :delete do
               %span.glyphicon.glyphicon-remove
+          %td
+            = link_to heart_tweet_path(tweet) do
+              %span.glyphicon.glyphicon-heart
+          %td
+            = tweet.hearts.count

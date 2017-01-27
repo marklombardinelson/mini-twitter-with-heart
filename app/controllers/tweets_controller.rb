@@ -47,6 +47,19 @@ class TweetsController < ApplicationController
     redirect_to tweets_url, notice: 'Tweet was successfully destroyed.'
   end
 
+  def heart
+    @tweet = Tweet.find(params[:id])
+    @tweet.hearts.create
+
+    # if @tweet.hearts.where(user: current_user).count != 0
+    #  @tweet.hearts.where(user: current_user).destory_all
+    # else
+    #  @tweet.hearts.create
+    # end
+
+    redirect_to tweets_path
+  end
+
   private
   # Only allow a trusted parameter "white list" through.
   def tweet_params
